@@ -6,11 +6,11 @@ header('Access-Control-Allow-Origin: *');
 
 if($_SERVER['REQUEST_METHOD']=='GET'){
     if(isset($_GET['id'])){
-        $query="select * from proveedores where id=".$_GET['id'];
+        $query="select * from proveedor where id=".$_GET['id'];
         $resultado=metodoGet($query);
         echo json_encode($resultado->fetch(PDO::FETCH_ASSOC));
     }else{
-        $query="select * from proveedores";
+        $query="select * from proveedor";
         $resultado=metodoGet($query);
         echo json_encode($resultado->fetchAll());
     }
@@ -23,8 +23,8 @@ if($_POST['METHOD']=='POST'){
     $nombre=$_POST['nombre'];
     $direccion=$_POST['direccion'];
     $telefono=$_POST['telefono'];
-    $query="insert into proveedores(nombre, direccion, telefono) values ('$nombre', '$direccion', '$telefono')";
-    $queryAutoIncrement="select MAX(id) as id from proveedores";
+    $query="insert into proveedor(nombre, direccion, telefono) values ('$nombre', '$direccion', '$telefono')";
+    $queryAutoIncrement="select MAX(id) as id from proveedor";
     $resultado=metodoPost($query, $queryAutoIncrement);
     echo json_encode($resultado);
     header("HTTP/1.1 200 OK");
@@ -37,7 +37,7 @@ if($_POST['METHOD']=='PUT'){
     $nombre=$_POST['nombre'];
     $direccion=$_POST['direccion'];
     $telefono=$_POST['telefono'];
-    $query="UPDATE proveedores SET nombre='$nombre', direccion='$direccion', telefono='$telefono' WHERE id='$id'";
+    $query="UPDATE proveedor SET nombre='$nombre', direccion='$direccion', telefono='$telefono' WHERE id='$id'";
     $resultado=metodoPut($query);
     echo json_encode($resultado);
     header("HTTP/1.1 200 OK");
@@ -47,7 +47,7 @@ if($_POST['METHOD']=='PUT'){
 if($_POST['METHOD']=='DELETE'){
     unset($_POST['METHOD']);
     $id=$_GET['id'];
-    $query="DELETE FROM proveedores WHERE id='$id'";
+    $query="DELETE FROM proveedor WHERE id='$id'";
     $resultado=metodoDelete($query);
     echo json_encode($resultado);
     header("HTTP/1.1 200 OK");
