@@ -67,7 +67,7 @@ if($_POST['METHOD']=='PUT'){
     $cantidadCompra=$cantidadVentaQuery['cantidad'];
     $resultado=metodoPost($query, $queryAutoIncrement);
     $cantidadDiferencia=($cantidadCompra-$cantidad);
-    $queryUdateInv="update inventario set cantidad = cantidad + $cantidadDiferencia where id = $id_producto";
+    $queryUdateInv="update inventario set cantidad = cantidad - $cantidadDiferencia where id = $id_producto";
     $ejecutaQuery=metodoPut($queryUdateInv);
     echo json_encode($resultado);
     header("HTTP/1.1 200 OK");
