@@ -39,7 +39,7 @@ function metodoPost($query, $queryAutoIncrement){
         $sentencia=$GLOBALS['pdo']->prepare($query);
         $sentencia->execute();
         $idAutoIncrement=metodoGet($queryAutoIncrement)->fetch(PDO::FETCH_ASSOC);
-        $resultado=array_merge($idAutoIncrement, $_POST);
+        $resultado=array_merge($_POST, $idAutoIncrement);
         $sentencia->closeCursor();
         desconectar();
         return $resultado;
