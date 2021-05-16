@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         from compra 
         join proveedor on (compra.id_proveedor = proveedor.id) 
         join inventario on (compra.id_producto = inventario.id)
-        order by fecha_de_compra asc
+        order by fecha_de_compra desc
         limit 10";
         $resultado=metodoGet($query);
         echo json_encode($resultado->fetchAll());
@@ -35,7 +35,7 @@ if($_POST['METHOD']=='POST'){
         join proveedor on (compra.id_proveedor = proveedor.id) 
         join inventario on (compra.id_producto = inventario.id)
         WHERE compra.id = ( SELECT MAX(compra.id) FROM compra)
-        order by fecha_de_compra asc
+        order by fecha_de_compra desc
         limit 10
     ";
     $query2="update inventario set cantidad = cantidad + $cantidad where id = $id_producto";
@@ -59,7 +59,7 @@ if($_POST['METHOD']=='PUT'){
     join proveedor on (compra.id_proveedor = proveedor.id) 
     join inventario on (compra.id_producto = inventario.id)
     WHERE compra.id = $id;
-    order by fecha_de_compra asc
+    order by fecha_de_compra desc
     limit 10
     ";
     $queryCantidad="SELECT cantidad from compra where id=$id";
