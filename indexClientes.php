@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         echo json_encode($resultado->fetch(PDO::FETCH_ASSOC));
     }else{
         $query="select * from cliente
-        order by nombre asc
+        order by nombre asc, apellido asc
         ";
         $resultado=metodoGet($query);
         echo json_encode($resultado->fetchAll());
